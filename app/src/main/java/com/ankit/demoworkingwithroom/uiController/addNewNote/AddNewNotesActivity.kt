@@ -18,14 +18,18 @@ class AddNewNotesActivity:BaseAppActivity() {
         viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
 
         binding.btnOk.setOnClickListener {
-            val note = NotesModel(
-                title = binding.title.text.toString(),
-                desc = binding.desc.text.toString(),
-                date = "10 june 2019"
+            if (binding.title.text.isBlank()){
+                showToast("Please enter title")
+            }else {
+                val note = NotesModel(
+                    title = binding.title.text.toString(),
+                    desc = binding.desc.text.toString(),
+                    date = "10 june 2019"
 
-            )
-            viewModel.saveNote(note)
-            finish()
+                )
+                viewModel.saveNote(note)
+                finish()
+            }
         }
         binding.btnCancel.setOnClickListener {
             finish()

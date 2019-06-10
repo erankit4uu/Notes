@@ -35,6 +35,14 @@ class NotesReprository constructor(private val notesDao: NotesDao,
             data.postValue(newList)
         }
         return data
+    } fun deleteSingleNote(position: Long): LiveData<Notes>{
+        executor.execute {
+            notesDao.deleteNote(position)
+            notes = notesDao.getAllNotes()
+            val newList = Notes(notes)
+            data.postValue(newList)
+        }
+        return data
     }
 
 

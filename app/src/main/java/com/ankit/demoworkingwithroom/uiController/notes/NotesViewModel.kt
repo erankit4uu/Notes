@@ -16,5 +16,7 @@ class NotesViewModel internal constructor(): ViewModel(){
     fun saveNote(notes: NotesModel){
         notesReprository.saveSingleNote(notes)
     }
-
+    fun deleteNote(position: Long){
+        notesReprository.deleteSingleNote(position = position )
+    }
 }
