@@ -4,8 +4,13 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
+
+data class Notes(
+    var notesList : List<NotesModel>
+)
+
 @Entity
-data class NotesModel (
+data class NotesModel(
 
     @PrimaryKey(autoGenerate = true)
     var _id: Long = 0L,
