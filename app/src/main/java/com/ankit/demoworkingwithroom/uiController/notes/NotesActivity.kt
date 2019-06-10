@@ -13,8 +13,11 @@ import kotlinx.android.synthetic.main.activity_notes.*
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.support.annotation.RequiresApi
+import com.ankit.demoworkingwithroom.databinding.ActivityNotesBinding
+import com.ankit.demoworkingwithroom.uiController.addNewNote.AddNewNotesActivity
 
 
 class NotesActivity: BaseAppActivity(){
@@ -27,33 +30,35 @@ class NotesActivity: BaseAppActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
-        binding(R.layout.activity_notes)
+        val binding = binding(R.layout.activity_notes) as ActivityNotesBinding
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        btn_fab.setOnClickListener {
-            val viewGroup = findViewById<ViewGroup>(android.R.id.content)
-            val dialog = AlertDialog.Builder(this)
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.custom_alert,
-                viewGroup, false)
-            dialog.setView(R.layout.custom_alert)
-            val okButton = dialogView.findViewById(R.id.btn_ok) as Button
-            val title = dialogView.findViewById(R.id.title) as EditText
-            val desc = dialogView.findViewById(R.id.desc) as EditText
-            val alertDialog = dialog.create()
-
-            alertDialog.show()
-            okButton.setOnClickListener {
-
-                val note = NotesModel(
-                    title = title.text.toString(),
-                    desc = desc.text.toString(),
-                    date = "10 june 2019"
-
-                )
-                viewModel.saveNote(note)
-                finish()
-            }
+        binding.btnFab.setOnClickListener {
+//            val viewGroup = findViewById<ViewGroup>(android.R.id.content)
+//            val dialog = AlertDialog.Builder(this)
+//            val dialogView = LayoutInflater.from(this).inflate(R.layout.custom_alert,
+//                viewGroup, false)
+//            dialog.setView(R.layout.custom_alert)
+//            val okButton = dialogView.findViewById(R.id.btn_ok) as Button
+//            val title = dialogView.findViewById(R.id.title) as EditText
+//            val desc = dialogView.findViewById(R.id.desc) as EditText
+//            val alertDialog = dialog.create()
+//
+//            alertDialog.show()
+//            okButton.setOnClickListener {
+//
+//                val note = NotesModel(
+//                    title = title.text.toString(),
+//                    desc = desc.text.toString(),
+//                    date = "10 june 2019"
+//
+//                )
+//                viewModel.saveNote(note)
+//                finish()
+//            }I
+            val intent = Intent(this, AddNewNotesActivity::class.java)
+            startActivity(intent)
         }
 
         viewModel.viewNotes.observe(this, Observer {notesModel ->

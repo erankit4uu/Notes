@@ -12,23 +12,27 @@ class NotesReprository constructor(private val notesDao: NotesDao,
 
 
     val data = MutableLiveData<Notes>()
+    val dataModel = MutableLiveData<NotesModel>()
     lateinit var notes : List<NotesModel>
 
     fun getSavedNotes() : LiveData<Notes>{
         executor.execute{
-            val notesList = notesDao.getAllNotes()
+             notes = notesDao.getAllNotes()
 
-            if(!notesList.isNullOrEmpty()){
-                val notes = Notes(notes)
-                data.postValue(notes)
+            if(!notes.isNullOrEmpty()){
+                val noteList = Notes(notes)
+                data.postValue(noteList)
             }
         }
         return data
     }
 
-    fun saveSingleNote(notes: NotesModel): LiveData<Notes>{
+    fun saveSingleNote(notesModel: NotesModel): LiveData<Notes>{
         executor.execute {
-            notesDao.saveNote(notes)
+            notesDao.saveNote(notesModel)
+            notes = notesDao.getAllNotes()
+            val newList = Notes(notes)
+            data.postValue(newList)
         }
         return data
     }

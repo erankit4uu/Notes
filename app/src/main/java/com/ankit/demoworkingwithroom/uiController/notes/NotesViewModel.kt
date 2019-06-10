@@ -7,7 +7,7 @@ import com.ankit.demoworkingwithroom.Data.Notes
 import com.ankit.demoworkingwithroom.Data.NotesModel
 import com.ankit.demoworkingwithroom.Data.reprository.NotesReprository
 
-class NotesViewModel : ViewModel(){
+class NotesViewModel internal constructor(): ViewModel(){
 
     val notesReprository : NotesReprository = App.REPOSITORY
 
