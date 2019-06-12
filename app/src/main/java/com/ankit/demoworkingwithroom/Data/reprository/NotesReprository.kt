@@ -12,7 +12,6 @@ class NotesReprository constructor(private val notesDao: NotesDao,
 
 
     val data = MutableLiveData<Notes>()
-    val dataModel = MutableLiveData<NotesModel>()
     lateinit var notes : List<NotesModel>
 
     fun getSavedNotes() : LiveData<Notes>{

@@ -42,6 +42,7 @@ class NotesActivity: BaseAppActivity() {
 
         binding.btnFab.setOnClickListener {
             val intent = Intent(this, AddNewNotesActivity::class.java)
+            intent.putExtra("isEdit", false)
             startActivity(intent)
         }
 

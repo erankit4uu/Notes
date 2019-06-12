@@ -3,6 +3,7 @@ package com.ankit.demoworkingwithroom.uiController.notes
 import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.ankit.demoworkingwithroom.Data.NotesModel
 import com.ankit.demoworkingwithroom.R
 import com.ankit.demoworkingwithroom.databinding.ItemNotesBinding
 import com.ankit.demoworkingwithroom.uiController.BaseAppActivity
+import com.ankit.demoworkingwithroom.uiController.addNewNote.AddNewNotesActivity
 
 
 class NotesAdapter(
@@ -44,6 +46,16 @@ class NotesAdapter(
             binding.title.text = notesModel.title
             binding.desc.text = notesModel.desc
             binding.date.text = notesModel.date
+
+            binding.card.setOnClickListener {
+                val intent = Intent(activity, AddNewNotesActivity::class.java)
+                intent.putExtra("title", notesModel.title)
+                intent.putExtra("desc", notesModel.desc)
+                intent.putExtra("date", notesModel.date)
+                intent.putExtra("id", notesModel._id)
+                intent.putExtra("isEdit", true)
+                activity.startActivity(intent)
+            }
         }
 
 //

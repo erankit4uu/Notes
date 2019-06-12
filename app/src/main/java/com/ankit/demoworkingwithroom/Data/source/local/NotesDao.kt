@@ -10,7 +10,7 @@ interface NotesDao{
     @Query("Select * From NotesModel")
     fun getAllNotes() : List<NotesModel>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveNote(notesModel: NotesModel)
 
     @Query("Delete From NotesModel where _id Like :noteId")
@@ -18,4 +18,7 @@ interface NotesDao{
 
     @Delete
     fun deleteAllNotes(list : List<NotesModel>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun editNote(notesModel: NotesModel)
 }
