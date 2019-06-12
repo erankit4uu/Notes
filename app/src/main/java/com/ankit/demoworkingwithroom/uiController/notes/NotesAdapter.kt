@@ -51,6 +51,9 @@ class NotesAdapter(
     }
 
     fun removeItem(position: Int) {
-        viewModel.deleteNote(position = position.toLong())
+        val id = notesModelList[position]._id
+        viewModel.deleteNote(position = id)
     }
+
+
 }

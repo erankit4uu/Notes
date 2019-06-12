@@ -15,4 +15,7 @@ interface NotesDao{
 
     @Query("Delete From NotesModel where _id Like :noteId")
     fun deleteNote(noteId: Long)
+
+    @Delete
+    fun deleteAllNotes(list : List<NotesModel>)
 }

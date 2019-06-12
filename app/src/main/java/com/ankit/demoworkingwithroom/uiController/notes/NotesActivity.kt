@@ -63,9 +63,7 @@ class NotesActivity: BaseAppActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, i: Int) {
 
 
-                val position = i
-//                val item = adapter.getData().get(position)
-
+                val position = viewHolder.adapterPosition
                 adapter.removeItem(position)
 
 
